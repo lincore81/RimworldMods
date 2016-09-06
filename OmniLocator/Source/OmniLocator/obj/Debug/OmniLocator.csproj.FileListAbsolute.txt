@@ -1,0 +1,8 @@
+S:\Games\steam\steamapps\common\RimWorld\Mods\OmniLocator\Source\Assemblies\OmniLocator.dll.config
+S:\Games\steam\steamapps\common\RimWorld\Mods\OmniLocator\Source\Assemblies\OmniLocator.dll
+S:\Games\steam\steamapps\common\RimWorld\Mods\OmniLocator\Source\Assemblies\OmniLocator.pdb
+S:\Games\steam\steamapps\common\RimWorld\Mods\OmniLocator\Assemblies\OmniLocator.dll.config
+S:\Games\steam\steamapps\common\RimWorld\Mods\OmniLocator\Assemblies\OmniLocator.dll
+S:\Games\steam\steamapps\common\RimWorld\Mods\OmniLocator\Assemblies\OmniLocator.pdb
+S:\Games\steam\steamapps\common\RimWorld\Mods\OmniLocator\Source\OmniLocator\obj\Debug\OmniLocator.dll
+S:\Games\steam\steamapps\common\RimWorld\Mods\OmniLocator\Source\OmniLocator\obj\Debug\OmniLocator.pdb

@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TerrainDefs>
+
+  <TerrainDef  ParentName="FloorBase">
+    <DefName>ParquetFloor</DefName>
+    <label>parquet</label>
+    <RenderPrecedence>250</RenderPrecedence>
+    <Description>Herringbone flooring. Regal elegance for the sophisticated colonist. Takes some time to build.</Description>
+    <texturePath>Terrain/Surfaces/Parquet</texturePath>
+    <statBases>
+      <WorkToMake>1200</WorkToMake>
+	  <Beauty>3</Beauty>
+    </statBases>
+    <CostList>
+      <WoodLog>8</WoodLog>
+    </CostList>
+    <constructEffect>ConstructWood</constructEffect>
+  </TerrainDef>
+  
+  <TerrainDef  ParentName="FloorBase">
+    <DefName>WoodPlankFloor</DefName>
+    <label>wood floor</label>
+    <RenderPrecedence>250</RenderPrecedence>
+    <Description>Wood plank flooring. For that warm, homey feeling.</Description>
+    <texturePath>Terrain/Surfaces/WoodFloor</texturePath>
+    <statBases>
+      <WorkToMake>85</WorkToMake>
+	  <Beauty>2</Beauty>
+    </statBases>
+    <CostList>
+      <WoodLog>3</WoodLog>
+    </CostList>
+    <constructEffect>ConstructWood</constructEffect>
+  </TerrainDef>
+
+
+  <!-- ================= Carpets ================= -->
+
+  <TerrainDef Name="CarpetBase" ParentName="FloorBase" Abstract="True">
+    <texturePath>Terrain/Surfaces/Carpet</texturePath>
+    <researchPrerequisites><li>CarpetMaking</li></researchPrerequisites>
+    <CostList>
+      <Cloth>7</Cloth>
+    </CostList>
+    <statBases>
+      <Beauty>3</Beauty>
+    </statBases>
+  </TerrainDef>
+  
+    <TerrainDef ParentName="CarpetBase">
+    <DefName>CarpetRed</DefName>
+    <label>red carpet</label>
+    <RenderPrecedence>200</RenderPrecedence>
+    <Description>Plush carpet in a lovely rose hue.</Description>
+    <color>(118,49,57)</color>
+  </TerrainDef>
+
+  <TerrainDef ParentName="CarpetBase">
+    <DefName>CarpetGreen</DefName>
+    <label>green carpet</label>
+    <RenderPrecedence>199</RenderPrecedence>
+    <Description>Naturalistic-feeling green carpet.</Description>
+    <color>(89,105,62)</color>
+  </TerrainDef>
+
+  <TerrainDef ParentName="CarpetBase">
+    <DefName>CarpetBlue</DefName>
+    <label>blue carpet</label>
+    <RenderPrecedence>198</RenderPrecedence>
+    <Description>Toe-hugging plush carpet in a cool blue color.</Description>
+    <color>(24,65,121)</color>
+  </TerrainDef>
+
+  <TerrainDef ParentName="CarpetBase">
+    <DefName>CarpetCream</DefName>
+    <label>cream carpet</label>
+    <RenderPrecedence>197</RenderPrecedence>
+    <Description>Inviting cream-colored carpet.</Description>
+    <color>(195,192,176)</color>
+  </TerrainDef>
+
+  <TerrainDef ParentName="CarpetBase">
+    <DefName>CarpetDark</DefName>
+    <label>dark carpet</label>
+    <RenderPrecedence>196</RenderPrecedence>
+    <Description>Professional-looking dark gray carpet.</Description>
+    <color>(81,81,81)</color>
+  </TerrainDef>
+
+
+</TerrainDefs>
