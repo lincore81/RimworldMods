@@ -34,7 +34,6 @@ namespace Lincore.OmniLocator {
 
         
         protected override void BuildPawnList() {
-            Log.Message("BuildPawnList");
             pawns = (from p in Find.MapPawns.AllPawnsSpawned
                      where p.RaceProps.Animal &&                 
                            !Find.FogGrid.IsFogged(p.Position) &&
