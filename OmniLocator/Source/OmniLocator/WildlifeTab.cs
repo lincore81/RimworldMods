@@ -13,37 +13,53 @@ namespace Lincore.OmniLocator {
         public const float CELL_SPACING = 5f;
         public const float COL_GENDER_X = 165f;
         public const float COL_WATCH_X = COL_GENDER_X + ICON_SIZE + CELL_SPACING;
-        public const float COL_MANHUNTER_X = COL_WATCH_X + ICON_SIZE + CELL_SPACING;
-        public const float COL_HUNT_X = COL_MANHUNTER_X + ICON_SIZE + CELL_SPACING;
+        public const float COL_WARNING_X = COL_WATCH_X + ICON_SIZE + CELL_SPACING;
+        public const float COL_HUNT_X = COL_WARNING_X + ICON_SIZE + CELL_SPACING;
         public const float COL_TAME_X = COL_HUNT_X + ICON_SIZE + CELL_SPACING;
-        public const float COL_HEALTH_X = COL_TAME_X + ICON_SIZE + CELL_SPACING;
+        public const float COL_HEALTH_X = COL_TAME_X + ICON_SIZE + CELL_SPACING + 10f;
         public const float HEADER_HEIGHT = 35f;
+        public const float UPDATE_INTERVAL = 5f;
 
         public static readonly Texture2D HuntIcon = ContentFinder<Texture2D>.Get("UI/Icons/Hunt");
         public static readonly Texture2D TameIcon = ContentFinder<Texture2D>.Get("UI/Icons/Tame");
         public static readonly Texture2D WatchIcon = ContentFinder<Texture2D>.Get("UI/Icons/Eye");
         public static readonly Texture2D WatchHoverIcon = ContentFinder<Texture2D>.Get("UI/Icons/Eye-Hover");
+        public static readonly Texture2D WarningIcon = ContentFinder<Texture2D>.Get("UI/Icons/Warning");
         public static readonly Texture2D ManhunterIcon = ContentFinder<Texture2D>.Get("UI/Icons/Manhunter");
+        public static readonly Texture2D InsectIcon = ContentFinder<Texture2D>.Get("UI/Icons/Insect");
 
 
+
+        protected float lastUpdate = -1f;
+
+        
         protected override void BuildPawnList() {
+            Log.Message("BuildPawnList");
             pawns = (from p in Find.MapPawns.AllPawnsSpawned
-                     where p.RaceProps.Animal &&
-                           //!p.InContainer &&
-                           p.Faction == null &&
+                     where p.RaceProps.Animal &&                 
+                           !Find.FogGrid.IsFogged(p.Position) &&
+                           p.Faction == null || p.Faction == Faction.OfInsects &&
                            (p.mindState.Active || p.Dead)
                      orderby (p.Name != null && !p.Name.Numerical)? p.Name.ToStringShort : p.Label
                      select p).ToList();
+            lastUpdate = Time.time;
         }
 
         public override Vector2 RequestedTabSize {
             get {
-                return new Vector2(610f, HEADER_HEIGHT + PawnsCount * 30f);
+                return new Vector2(610f, HEADER_HEIGHT + pawns.Count * 30f);
             }
         }
 
-        public override void DoWindowContents(Rect inRect) {
+        public override void DoWindowContents(Rect inRect) {            
             base.DoWindowContents(inRect);
+
+            if (Time.time - lastUpdate >= UPDATE_INTERVAL) {
+                // pawns are filtered by criteria that do not cause the list to be marked as dirty when changed
+                // e.g. if a mega spider was revealed it would not appear in the list unless it is manually repopulated.
+                Notify_PawnsChanged();                
+            }
+                        
             Rect headerBounds = new Rect(0f, 0f, inRect.width, HEADER_HEIGHT);
             DrawTableHeader(headerBounds);
 
@@ -70,8 +86,11 @@ namespace Lincore.OmniLocator {
             // manhunter?
             var state = p.mindState.mentalStateHandler.CurStateDef;
             if (state != null && state.IsAggro) {
-                rect.x = COL_MANHUNTER_X;
+                rect.x = COL_WARNING_X;
                 DrawIcon(rect, ManhunterIcon, "Manhunter");
+            } else if (p.Faction == Faction.OfInsects) {
+                rect.x = COL_WARNING_X;
+                DrawIcon(rect, InsectIcon, "Infestation");
             }
             
             // designations:                
@@ -122,8 +141,8 @@ namespace Lincore.OmniLocator {
 
         protected void DrawTableHeader(Rect bounds) {
             GUI.BeginGroup(bounds);
-            var rect = new Rect(COL_MANHUNTER_X, bounds.height - ICON_SIZE, ICON_SIZE, ICON_SIZE);
-            DrawIcon(rect, ManhunterIcon, "Manhunter");
+            var rect = new Rect(COL_WARNING_X, bounds.height - ICON_SIZE, ICON_SIZE, ICON_SIZE);
+            DrawIcon(rect, WarningIcon, "Danger");
 
             rect.x = COL_HUNT_X;
             DrawIcon(rect, HuntIcon, "DesignatorHunt".Translate());
