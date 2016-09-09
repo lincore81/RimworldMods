@@ -9,14 +9,18 @@ namespace Lincore.OmniLocator {
 
     [StaticConstructorOnStartup]
     public class MainTabWindow_Wildlife : MainTabWindow_PawnList {
+        public const float MIN_RETALIATION_CHANCE_ON_HUNT = 0.2f;
+        public const float MIN_RETALIATION_CHANCE_ON_TAME = 0.02f;
+  
         public const float ICON_SIZE = 24f;
-        public const float CELL_SPACING = 5f;
-        public const float COL_GENDER_X = 165f;
+        public const float CELL_SPACING = 5f;        
+        public const float COL_GENDER_X = 165f + ICON_SIZE + CELL_SPACING;
         public const float COL_WATCH_X = COL_GENDER_X + ICON_SIZE + CELL_SPACING;
         public const float COL_WARNING_X = COL_WATCH_X + ICON_SIZE + CELL_SPACING;
         public const float COL_HUNT_X = COL_WARNING_X + ICON_SIZE + CELL_SPACING;
         public const float COL_TAME_X = COL_HUNT_X + ICON_SIZE + CELL_SPACING;
         public const float COL_HEALTH_X = COL_TAME_X + ICON_SIZE + CELL_SPACING + 10f;
+        public const float COL_INFO_X = 580 - ICON_SIZE - CELL_SPACING;
         public const float HEADER_HEIGHT = 35f;
         public const float UPDATE_INTERVAL = 5f;
 
@@ -27,6 +31,7 @@ namespace Lincore.OmniLocator {
         public static readonly Texture2D WarningIcon = ContentFinder<Texture2D>.Get("UI/Icons/Warning");
         public static readonly Texture2D ManhunterIcon = ContentFinder<Texture2D>.Get("UI/Icons/Manhunter");
         public static readonly Texture2D InsectIcon = ContentFinder<Texture2D>.Get("UI/Icons/Insect");
+        public static readonly Texture2D PredatorIcon = ContentFinder<Texture2D>.Get("UI/Icons/Predator");
 
 
 
@@ -69,27 +74,30 @@ namespace Lincore.OmniLocator {
         protected override void DrawPawnRow(Rect bounds, Pawn p) {
             GUI.BeginGroup(bounds);
 
-            var rect = new Rect(COL_WATCH_X, bounds.height - ICON_SIZE, ICON_SIZE, ICON_SIZE);
+            var rect = new Rect(COL_GENDER_X, bounds.height - ICON_SIZE, ICON_SIZE, ICON_SIZE);
+
+            // gender
+            DrawIcon(rect, p.gender.GetIcon(), p.gender.GetLabel().CapitalizeFirst());
 
             // watch
+            rect.x = COL_WATCH_X;
             if (Widgets.ButtonInvisible(rect, false)) JumpToTargetUtility.TryJump(p);
-            var icon = Mouse.IsOver(rect)? WatchHoverIcon : WatchIcon;
+            var icon = Mouse.IsOver(rect) ? WatchHoverIcon : WatchIcon;
             var tooltip = p.GetTooltip();
             tooltip.text = "Click jump to animal while keeping this tab open:\n\n" + tooltip.text;
             DrawIcon(rect, icon, tooltip);
 
-            // gender
-            rect.x = COL_GENDER_X;
-            DrawIcon(rect, p.gender.GetIcon(), p.gender.GetLabel().CapitalizeFirst());
-
-            // manhunter?
+            // manhunter/insectoid?
             var state = p.mindState.mentalStateHandler.CurStateDef;
+            bool warningSet = false;
             if (state != null && state.IsAggro) {
                 rect.x = COL_WARNING_X;
                 DrawIcon(rect, ManhunterIcon, "Manhunter");
+                warningSet = true;
             } else if (p.Faction == Faction.OfInsects) {
                 rect.x = COL_WARNING_X;
                 DrawIcon(rect, InsectIcon, "Infestation");
+                warningSet = true;
             }
             
             // designations:                
@@ -98,32 +106,52 @@ namespace Lincore.OmniLocator {
             var doHunt = huntDesignation != null;
             var doTame = tameDesignation != null;
 
-            // hunt?
+
+            // hunted?
             rect.x = COL_HUNT_X;
             if (DrawCheckbox(rect, ref doHunt, "DesignatorHuntDesc".Translate())) {
                 if (doHunt) {
                     huntDesignation = new Designation(p, DesignationDefOf.Hunt);
                     Find.DesignationManager.AddDesignation(huntDesignation);
                     if (doTame) Find.DesignationManager.RemoveDesignation(tameDesignation);
+                    if (p.RaceProps.manhunterOnDamageChance > MIN_RETALIATION_CHANCE_ON_HUNT) {
+                        Verse.Sound.SoundStarter.PlayOneShotOnCamera(SoundDefOf.MessageAlert);
+                    }
                 } else {
                     Find.DesignationManager.RemoveDesignation(huntDesignation);
+                    huntDesignation = null;
                 }
             }
-            
-            // tame?
+
+            // taming?
             rect.x = COL_TAME_X;
             if (DrawCheckbox(rect, ref doTame, "DesignatorTameDesc".Translate())) {
                 if (doTame) {
                     tameDesignation = new Designation(p, DesignationDefOf.Tame);
                     Find.DesignationManager.AddDesignation(tameDesignation);
                     if (doHunt) Find.DesignationManager.RemoveDesignation(huntDesignation);
+                    if (p.RaceProps.manhunterOnTameFailChance > MIN_RETALIATION_CHANCE_ON_TAME) {
+                        Verse.Sound.SoundStarter.PlayOneShotOnCamera(SoundDefOf.MessageAlert);
+                    }
                 }
                 else {
                     Find.DesignationManager.RemoveDesignation(tameDesignation);
                 }
             }
 
-            // medical conditions
+            // retaliation warning:
+            rect.x = COL_WARNING_X;
+            if (!warningSet && huntDesignation != null && p.RaceProps.manhunterOnDamageChance > MIN_RETALIATION_CHANCE_ON_HUNT) {
+                tooltip = "MessageAnimalsGoPsychoHunted".Translate(p.kindDef.label);
+                DrawIcon(rect, PredatorIcon, tooltip);
+            } else if (!warningSet && tameDesignation != null && p.RaceProps.manhunterOnTameFailChance > MIN_RETALIATION_CHANCE_ON_TAME) {
+                tooltip = "MessageAnimalManhuntsOnTameFailed".Translate(p.kindDef.label,
+                          p.kindDef.RaceProps.manhunterOnTameFailChance.ToStringPercent("F2"));
+                DrawIcon(rect, PredatorIcon, tooltip);
+            }
+
+
+            // medical conditions:
             var hediffs = p.health.hediffSet.hediffs
                 .Where(h => !h.IsOld())                
                 .Select(h => h.def.LabelCap)
@@ -132,9 +160,13 @@ namespace Lincore.OmniLocator {
             if (c > 0) {
                 var str = c == 1? hediffs.First() : hediffs.Aggregate((s1, s2) => s1 + ", " + s2);
                 rect.x = COL_HEALTH_X;
-                rect.width = bounds.width - rect.x;
+                rect.width = COL_INFO_X - rect.x;
                 GUI.Label(rect, str);
             }
+
+            // info button
+            Widgets.InfoCardButton(COL_INFO_X, rect.y, p);
+
             GUI.EndGroup();
         }
 
