@@ -22,6 +22,7 @@ namespace Lincore.OmniLocator {
         public const float COL_HEALTH_X = COL_TAME_X + ICON_SIZE + CELL_SPACING + 10f;
         public const float COL_INFO_X = 580 - ICON_SIZE - CELL_SPACING;
         public const float HEADER_HEIGHT = 35f;
+        public const float VERTICAL_MARGIN = 12f;
         public const float UPDATE_INTERVAL = 5f;
 
         public static readonly Texture2D HuntIcon = ContentFinder<Texture2D>.Get("UI/Icons/Hunt");
@@ -51,17 +52,22 @@ namespace Lincore.OmniLocator {
 
         public override Vector2 RequestedTabSize {
             get {
-                return new Vector2(610f, HEADER_HEIGHT + pawns.Count * 30f);
+                return new Vector2(610f, HEADER_HEIGHT + VERTICAL_MARGIN + pawns.Count * 30f);
             }
         }
 
-        public override void DoWindowContents(Rect inRect) {            
+        public override void DoWindowContents(Rect inRect) {
             base.DoWindowContents(inRect);
 
             if (Time.time - lastUpdate >= UPDATE_INTERVAL) {
                 // pawns are filtered by criteria that do not cause the list to be marked as dirty when changed
                 // e.g. if a mega spider was revealed it would not appear in the list unless it is manually repopulated.
                 Notify_PawnsChanged();                
+            }
+
+            if (PawnsCount == 0) {
+                Widgets.Label(inRect, "Whichever animal did not succumb to these harsh conditions is long gone.");
+                return;
             }
                         
             Rect headerBounds = new Rect(0f, 0f, inRect.width, HEADER_HEIGHT);

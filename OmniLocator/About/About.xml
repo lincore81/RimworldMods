@@ -10,6 +10,8 @@
   https://github.com/lincore81/RimworldMods/
   
   Changes:  
+  2016/10/16:
+    - The window should now always have the correct height.
   2016/09/09: 
 	- Trying to hunt/tame animals that are likely to retaliate (>= 20%/2% respectively) will now produce a visable and audible warning.
 	- Added an info button to easily look up an animal's stats.
