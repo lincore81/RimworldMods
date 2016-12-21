@@ -38,11 +38,10 @@ namespace Lincore.OmniLocator {
 
         protected float lastUpdate = -1f;
 
-        
         protected override void BuildPawnList() {
-            pawns = (from p in Find.MapPawns.AllPawnsSpawned
-                     where p.RaceProps.Animal &&                 
-                           !Find.FogGrid.IsFogged(p.Position) &&
+            pawns = (from p in Find.VisibleMap.mapPawns.AllPawnsSpawned
+                     where p.RaceProps.Animal &&   
+                           !Find.VisibleMap.fogGrid.IsFogged(p.Position) &&
                            p.Faction == null || p.Faction == Faction.OfInsects &&
                            (p.mindState.Active || p.Dead)
                      orderby (p.Name != null && !p.Name.Numerical)? p.Name.ToStringShort : p.Label
@@ -106,9 +105,9 @@ namespace Lincore.OmniLocator {
                 warningSet = true;
             }
             
-            // designations:                
-            var huntDesignation = Find.DesignationManager.DesignationOn(p, DesignationDefOf.Hunt);
-            var tameDesignation = Find.DesignationManager.DesignationOn(p, DesignationDefOf.Tame);
+            // designations:
+            var huntDesignation = Find.VisibleMap.designationManager.DesignationOn(p, DesignationDefOf.Hunt);
+            var tameDesignation = Find.VisibleMap.designationManager.DesignationOn(p, DesignationDefOf.Tame);
             var doHunt = huntDesignation != null;
             var doTame = tameDesignation != null;
 
@@ -118,13 +117,13 @@ namespace Lincore.OmniLocator {
             if (DrawCheckbox(rect, ref doHunt, "DesignatorHuntDesc".Translate())) {
                 if (doHunt) {
                     huntDesignation = new Designation(p, DesignationDefOf.Hunt);
-                    Find.DesignationManager.AddDesignation(huntDesignation);
-                    if (doTame) Find.DesignationManager.RemoveDesignation(tameDesignation);
+                    Find.VisibleMap.designationManager.AddDesignation(huntDesignation);
+                    if (doTame) Find.VisibleMap.designationManager.RemoveDesignation(tameDesignation);
                     if (p.RaceProps.manhunterOnDamageChance > MIN_RETALIATION_CHANCE_ON_HUNT) {
                         Verse.Sound.SoundStarter.PlayOneShotOnCamera(SoundDefOf.MessageAlert);
                     }
                 } else {
-                    Find.DesignationManager.RemoveDesignation(huntDesignation);
+                    Find.VisibleMap.designationManager.RemoveDesignation(huntDesignation);
                     huntDesignation = null;
                 }
             }
@@ -134,14 +133,14 @@ namespace Lincore.OmniLocator {
             if (DrawCheckbox(rect, ref doTame, "DesignatorTameDesc".Translate())) {
                 if (doTame) {
                     tameDesignation = new Designation(p, DesignationDefOf.Tame);
-                    Find.DesignationManager.AddDesignation(tameDesignation);
-                    if (doHunt) Find.DesignationManager.RemoveDesignation(huntDesignation);
+                    Find.VisibleMap.designationManager.AddDesignation(tameDesignation);
+                    if (doHunt) Find.VisibleMap.designationManager.RemoveDesignation(huntDesignation);
                     if (p.RaceProps.manhunterOnTameFailChance > MIN_RETALIATION_CHANCE_ON_TAME) {
                         Verse.Sound.SoundStarter.PlayOneShotOnCamera(SoundDefOf.MessageAlert);
                     }
                 }
                 else {
-                    Find.DesignationManager.RemoveDesignation(tameDesignation);
+                    Find.VisibleMap.designationManager.RemoveDesignation(tameDesignation);
                 }
             }
 
