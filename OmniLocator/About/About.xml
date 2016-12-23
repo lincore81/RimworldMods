@@ -1,24 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>Wildlife Tab</name>
   <author>lincore</author>
   <url>https://ludeon.com/forums/index.php?topic=25736.0</url>
-  <targetVersion>0.15.1280</targetVersion>
+  <targetVersion>0.16.1393</targetVersion>
   <description>This mod adds a new tab that conveniently lists all wild animals. Animals belonging to a faction are excluded from this list (with the exception of the insectoid faction).
   
   Non-steam and previous releases as well as the source code for my mods can be found on github:
   https://github.com/lincore81/RimworldMods/
   
-  Changes:  
+  Changes:
+  2016/21/12:
+    - Update to A16.
   2016/10/16:
     - The window should now always have the correct height.
   2016/09/09: 
-	- Trying to hunt/tame animals that are likely to retaliate (>= 20%/2% respectively) will now produce a visable and audible warning.
-	- Added an info button to easily look up an animal's stats.
+    - Trying to hunt/tame animals that are likely to retaliate (>= 20%/2% respectively) will now produce a visable and audible warning.
+    - Added an info button to easily look up an animal's stats.
   2016/09/07: 
-	- The manhunter-column has been generalized into a warning column.
-	- Members of the insectoid faction (= infestation) are now included in the list.
-	- Members of this faction are indicated by a special warning icon
-	- Made sure hidden creatures will never be listed.
+    - The manhunter-column has been generalized into a warning column.
+    - Members of the insectoid faction (= infestation) are now included in the list.
+    - Members of this faction are indicated by a special warning icon
+    - Made sure hidden creatures will never be listed.
   </description>
 </ModMetaData>
