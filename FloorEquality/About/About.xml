@@ -2,8 +2,8 @@
 <ModMetaData>
   <name>Floor Equality</name>
   <author>lincore</author>
-  <url>http://rimworldgame.com</url>
-  <targetVersion>0.15.1280</targetVersion>
+  <url>https://github.com/lincore81/RimworldMods</url>
+  <targetVersion>0.16.1393</targetVersion>
   <description>This small modification makes almost all indoor floorings equally beautiful as smoothed stone. The exception is wood floor, because it is very easy to build. Instead, I added parquet floor which is harder to build and costs more than twice the resources.
 
 Changes:  

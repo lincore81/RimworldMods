@@ -5,9 +5,11 @@
   <url>https://ludeon.com/forums/index.php?topic=25736.0</url>
   <targetVersion>0.16.1393</targetVersion>
   <description>This mod adds a new tab that conveniently lists all wild animals. Animals belonging to a faction are excluded from this list (with the exception of the insectoid faction).
-  
+      
   Non-steam and previous releases as well as the source code for my mods can be found on github:
   https://github.com/lincore81/RimworldMods/
+  
+  Thank you ShawnBuckley for providing the update to Alpha 16. Appreciate it!
   
   Changes:
   2016/21/12:
