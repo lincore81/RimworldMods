@@ -1,0 +1,6 @@
+S:\Games\steam\steamapps\common\RimWorld\Mods\NoAutoJoin\Assemblies\NoAutoJoin.dll
+S:\Games\steam\steamapps\common\RimWorld\Mods\NoAutoJoin\Assemblies\NoAutoJoin.pdb
+S:\Games\steam\steamapps\common\RimWorld\Mods\NoAutoJoin\Source\NoAutoJoin\obj\Release\NoAutoJoin.dll
+S:\Games\steam\steamapps\common\RimWorld\Mods\NoAutoJoin\Source\NoAutoJoin\obj\Release\NoAutoJoin.pdb
+S:\Games\steam\steamapps\common\RimWorld\Mods\NoAutoJoin\Source\NoAutoJoin\obj\Release\NoAutoJoin.csprojResolveAssemblyReference.cache
+S:\Games\steam\steamapps\common\RimWorld\Mods\NoAutoJoin\Assemblies\NoAutoJoin.dll.config

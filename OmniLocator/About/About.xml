@@ -2,9 +2,11 @@
 <ModMetaData>
   <name>Wildlife Tab</name>
   <author>lincore</author>
-  <url>https://ludeon.com/forums/index.php?topic=25736.0</url>
+  <url>https://github.com/lincore81/RimworldMods</url>
   <targetVersion>0.16.1393</targetVersion>
-  <description>This mod adds a new tab that conveniently lists all wild animals. Animals belonging to a faction are excluded from this list (with the exception of the insectoid faction).
+  <description>Version 17.02
+  
+  This mod adds a new tab that conveniently lists all wild animals. Animals belonging to a faction are excluded from this list (with the exception of the insectoid faction).
       
   Non-steam and previous releases as well as the source code for my mods can be found on github:
   https://github.com/lincore81/RimworldMods/

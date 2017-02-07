@@ -24,11 +24,11 @@
     <Description>Wood plank flooring. For that warm, homey feeling.</Description>
     <texturePath>Terrain/Surfaces/WoodFloor</texturePath>
     <statBases>
-      <WorkToMake>85</WorkToMake>
+      <WorkToMake>400</WorkToMake>
 	  <Beauty>2</Beauty>
     </statBases>
     <CostList>
-      <WoodLog>3</WoodLog>
+      <WoodLog>5</WoodLog>
     </CostList>
     <constructEffect>ConstructWood</constructEffect>
   </TerrainDef>

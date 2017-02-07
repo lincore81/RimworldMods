@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>No Auto-Join</name>
+  <author>lincore</author>
+  <url>https://github.com/lincore81/RimworldMods</url>
+  <targetVersion>0.16.1393</targetVersion>
+  <description>Wanderers and refugees are now polite enough to ask for permission before they join your colony.
+  </description>
+</ModMetaData>

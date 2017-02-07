@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+<PoliteWandererJoin>A wanderer named NAME has arrived and wants to join the colony. HE is a {0}. Biologically, HE is {1} years old.</PoliteWandererJoin>
+<PoliteWandererJoinAccept>Welcome HIM</PoliteWandererJoinAccept>
+<PoliteWandererJoinReject>Send HIM away</PoliteWandererJoinReject>
+
+</LanguageData>

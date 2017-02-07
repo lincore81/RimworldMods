@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <IncidentDef>
+    <defName>WandererJoin</defName>
+    <label>wanderer join</label>
+    <targetType>BaseMap</targetType>
+    <workerClass>IncidentWorker_WandererJoin</workerClass>
+    <baseChance>0.0</baseChance>
+    <populationEffect>Increase</populationEffect>
+  </IncidentDef>
+  
+  <IncidentDef>
+    <defName>PoliteWandererJoin</defName>
+    <label>polite wanderer join</label>
+    <targetType>BaseMap</targetType>
+    <workerClass>NoAutoJoin.IncidentWorker_PoliteWandererJoin</workerClass>
+    <baseChance>0.4</baseChance>
+    <populationEffect>Increase</populationEffect>
+  </IncidentDef>
+</Defs>

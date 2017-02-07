@@ -4,7 +4,9 @@
   <author>lincore</author>
   <url>https://github.com/lincore81/RimworldMods</url>
   <targetVersion>0.16.1393</targetVersion>
-  <description>This small modification makes almost all indoor floorings equally beautiful as smoothed stone. The exception is wood floor, because it is very easy to build. Instead, I added parquet floor which is harder to build and costs more than twice the resources.
+  <description>Version 17.02
+  
+  This small modification makes almost all indoor floorings equally beautiful as smoothed stone. The exception is wood floor, because it is very easy to build. Instead, I added parquet floor which is harder to build and costs more than twice the resources.
 
 Changes:  
    Adjusted beauty of vaniila floors
@@ -15,9 +17,14 @@ Changes:
    Added a new floor type:
      - parquet: requires 8 wood and 1200 work, has 3 beauty
 
+   2017/02/07:
+   To offset the increased beauty-value of wood planks, I've decided to increase their cost:
+	 - from 3 to 5 wood
+	 - from 85 to 400 work
+
 
 License:
-   I release my work on this mod into the public domain.
+   I release my work on this mod into the public domain and under the MIT license (pick one).
    The parquet floor was created using a set of wood textures from:
       webtreats.mysitemyway.com/tileable-light-wood-textures
       Licensed as CC-BY-2.0, creativecommons.org/licenses/by/2.0/
