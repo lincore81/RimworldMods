@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<MainTabDefs>
+<MainButtonDefs>
 
-  <MainTabDef>
+  <MainButtonDef>
     <defName>Lincore_WildlifeTab</defName>
     <label>wildlife</label>
     <description>Find alpha beavers and other wildlife</description>
-    <windowClass>Lincore.OmniLocator.MainTabWindow_Wildlife</windowClass>
+    <tabWindowClass>Lincore.OmniLocator.MainTabWindow_Wildlife</tabWindowClass>
     <order>43</order>
-  </MainTabDef>
+  </MainButtonDef>
   
-</MainTabDefs>
+</MainButtonDefs>

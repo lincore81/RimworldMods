@@ -3,18 +3,20 @@
   <name>Wildlife Tab</name>
   <author>lincore</author>
   <url>https://github.com/lincore81/RimworldMods</url>
-  <targetVersion>0.16.1393</targetVersion>
-  <description>Version 17.02
+  <targetVersion>0.17.1546</targetVersion>
+  <description>Version 17.0 for a17.1546
   
   This mod adds a new tab that conveniently lists all wild animals. Animals belonging to a faction are excluded from this list (with the exception of the insectoid faction).
       
-  Non-steam and previous releases as well as the source code for my mods can be found on github:
+  The version on the steam workshop will always target the latest stable release of RimWorld. Previous and unstable versions as well as the source for my mods can be found on github:
   https://github.com/lincore81/RimworldMods/
   
   Thank you ShawnBuckley for providing the update to Alpha 16. Appreciate it!
   
   Changes:
-  2016/21/12:
+  2017/05/23:
+    - Update to A17.
+  2016/12/21:
     - Update to A16.
   2016/10/16:
     - The window should now always have the correct height.

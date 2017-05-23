@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <PawnColumnDef>
+    <defName>Danger</defName>
+    <workerClass>Lincore.OmniLocator.PawnColumnWorker_Danger</workerClass>
+    <sortable>true</sortable>
+    <headerIcon>UI/Icons/Warning</headerIcon>
+    <headerTip>Danger</headerTip>
+  </PawnColumnDef>
+
+  <PawnColumnDef>
+    <defName>Watch</defName>
+    <workerClass>Lincore.OmniLocator.PawnColumnWorker_Watch</workerClass>
+    <sortable>false</sortable>
+  </PawnColumnDef>
+  
+  <PawnColumnDef>
+    <defName>Hunt</defName>
+    <workerClass>Lincore.OmniLocator.PawnColumnWorker_Hunt</workerClass>
+    <sortable>true</sortable>
+    <headerIcon>UI/Icons/Hunt</headerIcon>
+    <headerTip>Hunt animal.</headerTip>
+  </PawnColumnDef>
+
+  <PawnColumnDef>
+    <defName>Tame</defName>
+    <workerClass>Lincore.OmniLocator.PawnColumnWorker_Tame</workerClass>
+    <sortable>true</sortable>
+    <headerIcon>UI/Icons/Tame</headerIcon>
+    <headerTip>Tame animal.</headerTip>
+  </PawnColumnDef>  
+  
+  <PawnColumnDef>
+    <defName>Medical</defName>
+    <workerClass>Lincore.OmniLocator.PawnColumnWorker_Medical</workerClass>
+	<widthPriority>100</widthPriority>
+    <sortable>true</sortable>
+  </PawnColumnDef>    
+  
+  <PawnColumnDef>
+    <defName>InfoButton</defName>
+    <workerClass>Lincore.OmniLocator.PawnColumnWorker_InfoButton</workerClass>
+    <sortable>false</sortable>
+  </PawnColumnDef>
+
+</Defs>

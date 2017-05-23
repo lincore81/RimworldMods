@@ -8,7 +8,12 @@ using UnityEngine;
 namespace Lincore.OmniLocator {
 
     [StaticConstructorOnStartup]
-    public class MainTabWindow_Wildlife : MainTabWindow_PawnList {
+    public class MainTabWindow_Wildlife : MainTabWindow_PawnTable {
+        [DefOf]
+        public static class PawnTableDefs {
+            public static PawnTableDef Wildlife;
+        }
+
         public const float MIN_RETALIATION_CHANCE_ON_HUNT = 0.2f;
         public const float MIN_RETALIATION_CHANCE_ON_TAME = 0.02f;
   
@@ -25,36 +30,29 @@ namespace Lincore.OmniLocator {
         public const float VERTICAL_MARGIN = 12f;
         public const float UPDATE_INTERVAL = 5f;
 
-        public static readonly Texture2D HuntIcon = ContentFinder<Texture2D>.Get("UI/Icons/Hunt");
-        public static readonly Texture2D TameIcon = ContentFinder<Texture2D>.Get("UI/Icons/Tame");
-        public static readonly Texture2D WatchIcon = ContentFinder<Texture2D>.Get("UI/Icons/Eye");
-        public static readonly Texture2D WatchHoverIcon = ContentFinder<Texture2D>.Get("UI/Icons/Eye-Hover");
-        public static readonly Texture2D WarningIcon = ContentFinder<Texture2D>.Get("UI/Icons/Warning");
-        public static readonly Texture2D ManhunterIcon = ContentFinder<Texture2D>.Get("UI/Icons/Manhunter");
-        public static readonly Texture2D InsectIcon = ContentFinder<Texture2D>.Get("UI/Icons/Insect");
-        public static readonly Texture2D PredatorIcon = ContentFinder<Texture2D>.Get("UI/Icons/Predator");
 
 
 
-        protected float lastUpdate = -1f;
-
-        protected override void BuildPawnList() {
-            pawns = (from p in Find.VisibleMap.mapPawns.AllPawnsSpawned
-                     where p.RaceProps.Animal &&   
+        protected override IEnumerable<Pawn> Pawns {
+            get {
+              return from p in Find.VisibleMap.mapPawns.AllPawnsSpawned
+                     where p.RaceProps.Animal &&
                            !Find.VisibleMap.fogGrid.IsFogged(p.Position) &&
                            p.Faction == null || p.Faction == Faction.OfInsects &&
                            (p.mindState.Active || p.Dead)
-                     orderby (p.Name != null && !p.Name.Numerical)? p.Name.ToStringShort : p.Label
-                     select p).ToList();
-            lastUpdate = Time.time;
-        }
-
-        public override Vector2 RequestedTabSize {
-            get {
-                return new Vector2(610f, HEADER_HEIGHT + VERTICAL_MARGIN + pawns.Count * 30f);
+                     orderby (p.Name != null && !p.Name.Numerical) ? p.Name.ToStringShort : p.Label
+                     select p;
             }
         }
 
+
+        protected override PawnTableDef PawnTableDef {
+            get {
+                return PawnTableDefs.Wildlife;
+            }
+        }
+
+        /*
         public override void DoWindowContents(Rect inRect) {
             base.DoWindowContents(inRect);
 
@@ -197,16 +195,7 @@ namespace Lincore.OmniLocator {
 
         // utility:
 
-        public static void DrawIcon(Rect r, Texture icon, TipSignal? tooltip = null) {
-            GUI.DrawTexture(r, icon);
-            if (tooltip.HasValue) TooltipHandler.TipRegion(r, tooltip.Value);
-        }
-
-        public static bool DrawCheckbox(Rect rect, ref bool flag, TipSignal? tooltip = null) {
-            var oldFlag = flag;            
-            Widgets.Checkbox(rect.position, ref flag, ICON_SIZE);
-            if (tooltip.HasValue) TooltipHandler.TipRegion(rect, tooltip.Value);
-            return flag != oldFlag;
-        }
+        
+        */
     }
 }

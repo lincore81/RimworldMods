@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <PawnTableDef>
+    <defName>Wildlife</defName>
+    <columns>
+      <li>Label</li>
+      <li>Gender</li>
+      <li>Watch</li>
+      <li>Danger</li>
+      <li>Hunt</li>
+      <li>Tame</li>
+      <li>Medical</li>
+      <li>InfoButton</li>
+	  <li>RemainingSpace</li>
+    </columns>
+  </PawnTableDef>
+
+</Defs>
