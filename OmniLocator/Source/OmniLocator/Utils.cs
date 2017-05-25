@@ -4,7 +4,6 @@ using Verse;
 namespace Lincore.OmniLocator {
     public static class Utils {
 
-
         public static void DrawIcon(Rect r, Texture icon, TipSignal? tooltip = null) {
             GUI.DrawTexture(r, icon);
             if (tooltip.HasValue) TooltipHandler.TipRegion(r, tooltip.Value);

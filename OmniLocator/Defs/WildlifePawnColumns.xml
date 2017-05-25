@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
+
+  <PawnColumnDef>
+    <defName>SortableLabel</defName>
+    <workerClass>PawnColumnWorker_Label</workerClass>
+    <sortable>true</sortable>
+    <headerIcon>UI/Icons/Label</headerIcon>
+    <headerTip>Name</headerTip>
+  </PawnColumnDef>
+
+  <PawnColumnDef>
+    <defName>GenderWithIconHeader</defName>
+    <workerClass>PawnColumnWorker_Gender</workerClass>
+	<headerIcon>UI/Icons/Sex</headerIcon>
+    <sortable>true</sortable>
+	<headerTip>Sex</headerTip>
+  </PawnColumnDef>
+  
   <PawnColumnDef>
     <defName>Danger</defName>
     <workerClass>Lincore.OmniLocator.PawnColumnWorker_Danger</workerClass>
@@ -8,19 +25,13 @@
     <headerIcon>UI/Icons/Warning</headerIcon>
     <headerTip>Danger</headerTip>
   </PawnColumnDef>
-
-  <PawnColumnDef>
-    <defName>Watch</defName>
-    <workerClass>Lincore.OmniLocator.PawnColumnWorker_Watch</workerClass>
-    <sortable>false</sortable>
-  </PawnColumnDef>
   
   <PawnColumnDef>
     <defName>Hunt</defName>
     <workerClass>Lincore.OmniLocator.PawnColumnWorker_Hunt</workerClass>
     <sortable>true</sortable>
     <headerIcon>UI/Icons/Hunt</headerIcon>
-    <headerTip>Hunt animal.</headerTip>
+    <headerTip>Hunt</headerTip>
   </PawnColumnDef>
 
   <PawnColumnDef>
@@ -28,7 +39,7 @@
     <workerClass>Lincore.OmniLocator.PawnColumnWorker_Tame</workerClass>
     <sortable>true</sortable>
     <headerIcon>UI/Icons/Tame</headerIcon>
-    <headerTip>Tame animal.</headerTip>
+    <headerTip>Tame</headerTip>
   </PawnColumnDef>  
   
   <PawnColumnDef>
@@ -36,6 +47,8 @@
     <workerClass>Lincore.OmniLocator.PawnColumnWorker_Medical</workerClass>
 	<widthPriority>100</widthPriority>
     <sortable>true</sortable>
+	<headerIcon>UI/Icons/Medical</headerIcon>
+	<headerTip>Medical condition</headerTip>
   </PawnColumnDef>    
   
   <PawnColumnDef>

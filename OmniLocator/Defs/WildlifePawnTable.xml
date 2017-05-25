@@ -4,14 +4,14 @@
   <PawnTableDef>
     <defName>Wildlife</defName>
     <columns>
-      <li>Label</li>
-      <li>Gender</li>
-      <li>Watch</li>
+	  <!--<li>Watch</li>-->
+	  <li>InfoButton</li>	  
+      <li>SortableLabel</li>
+      <li>GenderWithIconHeader</li>
       <li>Danger</li>
       <li>Hunt</li>
       <li>Tame</li>
       <li>Medical</li>
-      <li>InfoButton</li>
 	  <li>RemainingSpace</li>
     </columns>
   </PawnTableDef>
